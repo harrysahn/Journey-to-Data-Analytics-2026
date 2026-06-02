@@ -1,15 +1,14 @@
 -- Platform: StrataScratch
--- Problem Name: Finding User Certified Campaigns
--- URL: https://platform.stratascratch.com/coding/10123-finding-user-certified-campaigns
+-- Problem Name: Find all posts which were reacted to with a heart
+-- URL: https://platform.stratascratch.com/coding/10087-find-all-posts-which-were-reacted-to-with-a-heart?code_type=3
 -- Difficulty: Easy
 
-SELECT 
-    customer_id, 
-    campaign_id, 
-    status
-FROM 
-    marketing_campaign_data
-WHERE 
-    status = 'Certified'
-ORDER BY 
-    customer_id ASC;
+SELECT DISTINCT
+    p.*
+FROM
+    facebook_posts p
+INNER JOIN
+    facebook_reactions r 
+ON
+    p.post_id = r.post_id AND 
+    r.reaction = 'heart';
